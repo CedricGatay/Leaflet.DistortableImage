@@ -153,8 +153,6 @@ L.DistortableImage.EditToolbar = LeafletToolbar.Popup.extend({
 			ToggleOutline,
 			ToggleEditable,
 			ToggleRotateScale,
-			ToggleExport,
-			EnableEXIF,
 			ToggleOrder
 		]
 	},

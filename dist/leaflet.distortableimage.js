@@ -1219,8 +1219,6 @@ L.DistortableImage.EditToolbar = LeafletToolbar.Popup.extend({
 			ToggleOutline,
 			ToggleEditable,
 			ToggleRotateScale,
-			ToggleExport,
-			EnableEXIF,
 			ToggleOrder
 		]
 	},
@@ -1387,7 +1385,7 @@ L.DistortableImage.Edit = L.Handler.extend({
     if (this._mode === 'lock') {
       map.addLayer(this._lockHandles);
     } else {
-      this._mode = 'distort';
+      this._mode = this._overlay.options.mode;
       map.addLayer(this._distortHandles);
       if (!this._selected) {
         this._distortHandles.eachLayer(function (layer) {
@@ -1522,7 +1520,7 @@ L.DistortableImage.Edit = L.Handler.extend({
 
     map.removeLayer(this._handles[this._mode]);
 
-		if (this._mode === "scale") { this._mode = "distort"; }
+		if (this._mode === "scale") { this._mode = this._overlay.options.mode; }
 		else { this._mode = "scale"; }
 
     map.addLayer(this._handles[this._mode]);
@@ -1535,7 +1533,7 @@ L.DistortableImage.Edit = L.Handler.extend({
 		if (this._mode === "lock") { return; }
 
     map.removeLayer(this._handles[this._mode]);
-    if (this._mode === "rotate") { this._mode = "distort"; } 
+    if (this._mode === "rotate") { this._mode = this._overlay.options.mode; } 
 		else { this._mode = "rotate"; }
 		
     map.addLayer(this._handles[this._mode]);
@@ -1581,7 +1579,7 @@ L.DistortableImage.Edit = L.Handler.extend({
     map.removeLayer(this._handles[this._mode]);
     /* Switch mode. */
     if (this._mode === "lock") {
-      this._mode = "distort";
+      this._mode = this._overlay.options.mode;
       this._enableDragging();
     } else {
       this._mode = "lock";
