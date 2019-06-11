@@ -138,7 +138,11 @@ L.DistortableImage.Edit = L.Handler.extend({
       map.addLayer(this._lockHandles);
     } else {
       this._mode = this._overlay.options.mode;
-      map.addLayer(this._distortHandles);
+      if (this._mode === 'distort') {
+        map.addLayer(this._distortHandles);
+      }else{
+        map.addLayer(this._rotateScaleHandles);
+      }
       if (!this._selected) {
         this._distortHandles.eachLayer(function (layer) {
           layer.setOpacity(0);
